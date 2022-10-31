@@ -26,7 +26,17 @@ jobs:
       - name: Set outputs
         id: aws-vars
         run: |
-          echo "aws={ sample: { cluster_name: \"sample\", account_id: \"12345\" }, sample1: { cluster_name: \"sample1\", account_id: \"54321\" } }" >> $GITHUB_OUTPUT
+          echo "aws=
+          {
+            sample: {
+              cluster_name: \"sample\",
+              account_id: \"12345\"
+            },
+            sample1: {
+              cluster_name: \"sample1\",
+              account_id: \"54321\"
+            }
+          }" >> $GITHUB_OUTPUT
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
