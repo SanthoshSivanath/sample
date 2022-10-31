@@ -1,0 +1,8 @@
+name: 'Deploy'
+description: 'Deploy image to EKS'
+runs:
+  using: "composite"
+  steps:
+    - name: Run
+      run: echo 'Hello World'
+      shell: bash
