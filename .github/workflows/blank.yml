@@ -30,25 +30,11 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v3
-        
-      - run: touch file
-        
-      - run: |
-          pwd
-          ls -al
-      
-      - name: Checkout codebase
-        uses: actions/checkout@v3
-        
-      - run: |
-          pwd
-          ls -al
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Set outputs
         id: aws-vars
-        run: |
-          echo 'aws= {"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}' >> $GITHUB_OUTPUT
+        run: echo 'aws= {"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}' >> $GITHUB_OUTPUT
           
       - run: |
           [[ ${{ fromJson(steps.aws-vars.outputs.aws)[steps.aws-vars.outputs.s].s }} =~ ('') ]]
