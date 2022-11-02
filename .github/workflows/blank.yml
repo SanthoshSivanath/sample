@@ -38,7 +38,7 @@ jobs:
           echo 'aws= {"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}' >> $GITHUB_OUTPUT
         
       - run: |
-          [[ '${{ fromJson(steps.aws-vars.outputs.aws).sample }}' =~ .+ ]]
+          [[ '${{ fromJson(steps.aws-vars.outputs.aws).s }}' =~ .+ ]]
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
