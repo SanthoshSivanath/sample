@@ -6,8 +6,8 @@ run-name: ${{ inputs.environment }}
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
-  #push:
-  #  branches: [ "master", "r[0-9][0-9].[0-9][0-9]",  "r[0-9][0-9].[0-9]"]
+  push:
+    branches: [ "master", "r[0-9][0-9].[0-9][0-9]",  "r[0-9][0-9].[0-9]"]
   #pull_request:
   #  branches: [ "master" ]
 
@@ -30,6 +30,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v3
+        
+      - run: pwd
+      
+      - name: Checkout codebase
+        uses: actions/checkout@v3
+        
+      - run: pwd
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Set outputs
         id: aws-vars
@@ -37,8 +47,6 @@ jobs:
           echo 'aws= {"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}' >> $GITHUB_OUTPUT
           echo "s=sample" >> $GITHUB_OUTPUT
           echo "t=cluster_name" >> $GITHUB_OUTPUT
-          
-      - run: sleep 60
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
