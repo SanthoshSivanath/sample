@@ -60,12 +60,12 @@ jobs:
             -H "Authorization: Bearer ${{ github.token }}" \
             https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | jq ".tag_name")
             
-      - run: |
-          echo tag=sample >> $GITHUB_OUTPUT
+      - id: var
+        run: echo tag=sample >> $GITHUB_OUTPUT
 
       - name: Install Terragrunt CLI
         run: |
-          echo ${{ steps.vars.outputs.tag }}
+          echo ${{ steps.var.outputs.tag }}
           curl -s -L https://github.com/gruntwork-io/terragrunt/releases/download/${{ steps.vars.outputs.tag }}/terragrunt_linux_amd64 -o terragrunt
           chmod u+x terragrunt
           echo $(pwd) >> $GITHUB_PATH
