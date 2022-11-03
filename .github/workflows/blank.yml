@@ -53,12 +53,20 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Set outputs
+        id: vars
+        run: |
+          curl \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | jq '.tag_name'
+          echo 'tag=latest' >> $GITHUB_OUTPUT
+      
+      - name: Set outputs
         id: aws-vars
         run: |
           curl https://github.com/gruntwork-io/terragrunt/releases/download/v0.39.2/terragrunt_linux_amd64 -o terragrunt
           ls
           chmod u+x terragrunt
-          ./terragrunt -v
           echo $(pwd) >> $GITHUB_PATH
           
       # Runs a single command using the runners shell
