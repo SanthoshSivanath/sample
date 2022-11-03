@@ -58,6 +58,7 @@ jobs:
           curl https://github.com/gruntwork-io/terragrunt/releases/download/v0.39.2/terragrunt_linux_amd64 -o terragrunt
           ls
           chmod u+x terragrunt
+          terragrunt -v
           echo $(pwd) >> $GITHUB_PATH
           
       # Runs a single command using the runners shell
