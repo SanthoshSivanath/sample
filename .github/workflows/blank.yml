@@ -63,6 +63,7 @@ jobs:
 
       - name: Install Terragrunt CLI
         run: |
+          echo ${{ steps.vars.outputs.tag }}
           curl -s -L https://github.com/gruntwork-io/terragrunt/releases/download/${{ steps.vars.outputs.tag }}/terragrunt_linux_amd64 -o terragrunt
           chmod u+x terragrunt
           echo $(pwd) >> $GITHUB_PATH
