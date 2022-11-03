@@ -55,11 +55,12 @@ jobs:
       - name: Set tag variable
         id: vars
         run: |
-          echo tag=sample >> $GITHUB_OUTPUT
           echo $(curl -s \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ github.token }}" \
             https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest | jq ".tag_name")
+            
+      - run: echo tag=sample >> $GITHUB_OUTPUT
 
       - name: Install Terragrunt CLI
         run: |
