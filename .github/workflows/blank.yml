@@ -55,6 +55,7 @@ jobs:
       - name: Set tag variable
         id: vars
         run: |
+          echo tag=sample >> $GITHUB_OUTPUT
           echo $(curl -s \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ github.token }}" \
