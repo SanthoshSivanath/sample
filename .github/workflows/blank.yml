@@ -55,10 +55,14 @@ jobs:
       - name: Set outputs
         id: aws-vars
         run: |
-          echo 'aws= {"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}' >> $GITHUB_OUTPUT
-          echo "s=sample" >> $GITHUB_OUTPUT
-          echo "t=cluster_name" >> $GITHUB_OUTPUT
-
+          curl \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer <YOUR-TOKEN>" \
+            https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest/terragrunt_linux_amd64
+          mv terragrunt_linux_amd64 terragrunt
+          chmod u+x terragrunt
+          echo $(pwd) >> $GITHUB_PATH
+          
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo ${{ fromJson(steps.aws-vars.outputs.aws)[steps.aws-vars.outputs.s].cluster_name }}
+        run: terragrunt -v
