@@ -55,7 +55,7 @@ jobs:
       - name: Set outputs
         id: aws-vars
         run: |
-          curl -L https://github.com/gruntwork-io/terragrunt/releases/download/v0.39.2/terragrunt_linux_amd64 -o terragrunt
+          curl https://github.com/gruntwork-io/terragrunt/releases/download/v0.39.2/terragrunt_linux_amd64 -o terragrunt
           ls
           chmod u+x terragrunt
           ./terragrunt -v
