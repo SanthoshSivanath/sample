@@ -55,10 +55,7 @@ jobs:
       - name: Set outputs
         id: aws-vars
         run: |
-          curl \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ github.token }}" \
-            https://api.github.com/repos/gruntwork-io/terragrunt/releases/latest/terragrunt_linux_amd64
+          curl https://github.com/gruntwork-io/terragrunt/releases/download/v0.39.2/terragrunt_linux_amd64
           mv terragrunt_linux_amd64 terragrunt
           chmod u+x terragrunt
           echo $(pwd) >> $GITHUB_PATH
