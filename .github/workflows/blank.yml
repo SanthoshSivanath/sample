@@ -34,10 +34,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Set outputs
         id: aws-vars
+        env:
+          AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
         run: |
-          aws='{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
-          echo "::add-mask::$aws"
-          echo aws=$aws >> $GITHUB_OUTPUT
+          echo "::add-mask::$AWS"
+          echo aws=$AWS >> $GITHUB_OUTPUT
         
       # - run: |
       #    [[ '${{ fromJson(steps.aws-vars.outputs.aws).s }}' =~ .+ ]]
