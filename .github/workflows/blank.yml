@@ -19,17 +19,18 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    env:
-      AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
+    strategy:
+      max-parallel: 1
+      matrix:
+        index: [ sample, sample1 ]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        id: run
-        run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
+        env:
+          AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
+        run: echo ${{ fromJson(env.AWS)[matrix.index].cluster_name }}
