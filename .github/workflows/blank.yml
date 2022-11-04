@@ -43,4 +43,4 @@ jobs:
       - run: exit 1
         
       - run: echo success
-        if: alwaya() && steps.run.outcome == 'success'
+        if: always() && steps.run.outcome == 'success'
