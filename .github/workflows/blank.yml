@@ -35,8 +35,9 @@ jobs:
       - name: Set outputs
         id: aws-vars
         run: |
-          var=$(echo "::add-mask::{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}")
-          echo aws=$var >> $GITHUB_OUTPUT
+          aws='{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
+          echo "::add-mask::$aws"
+          echo aws=$aws >> $GITHUB_OUTPUT
         
       # - run: |
       #    [[ '${{ fromJson(steps.aws-vars.outputs.aws).s }}' =~ .+ ]]
