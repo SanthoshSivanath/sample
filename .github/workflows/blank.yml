@@ -1,7 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI
-run-name: ${{ inputs.environment }}
 
 # Controls when the workflow will run
 on:
@@ -13,11 +12,6 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Environment to deploy'
-        type: boolean
-        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -39,9 +33,3 @@ jobs:
       - name: Run a one-line script
         id: run
         run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
-        
-      - run: |
-          { echo s;rm read;echo t; }
-        
-      - run: echo success
-        if: always() && steps.run.outcome == 'success'
