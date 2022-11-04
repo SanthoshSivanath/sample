@@ -41,9 +41,7 @@ jobs:
         run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
         
       - run: |
-          echo s
-          exit 1
-          echo t
+          echo s ; exit 1 ; echo t
         
       - run: echo success
         if: always() && steps.run.outcome == 'success'
