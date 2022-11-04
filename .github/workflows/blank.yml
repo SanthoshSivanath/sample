@@ -35,11 +35,9 @@ jobs:
       - name: Set outputs
         id: aws-vars
         env:
-          AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
+          AWS: '{"sample":{"cluster_name":"::add-mask::sample","account_id":"::add-mask::12345"},"sample1":{"cluster_name":"::add-mask::sample1","account_id":"::add-mask::54321"}}'
         run: |
-          echo ::notice title=Image tag::Sample
-          aws='{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
-          echo "::add-mask::$aws"
+          aws='{"sample":{"cluster_name":"::add-mask::sample","account_id":"::add-mask::12345"},"sample1":{"cluster_name":"::add-mask::sample1","account_id":"::add-mask::54321"}}'
           echo aws=$aws >> $GITHUB_OUTPUT
         
       # - run: |
