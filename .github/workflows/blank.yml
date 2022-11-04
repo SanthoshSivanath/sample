@@ -35,8 +35,11 @@ jobs:
         with:
           fetch-depth: 0
           
-      - run: git log
+      - run: exit 1
+      
+      - run: echo sample
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
+        if: failure()
         run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
