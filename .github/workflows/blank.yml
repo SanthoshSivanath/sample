@@ -37,7 +37,7 @@ jobs:
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
         run: |
-          echi ::notice title=Image tag::Sample
+          echo ::notice title=Image tag::Sample
           echo "::add-mask::$AWS"
           echo aws=$AWS >> $GITHUB_OUTPUT
         
