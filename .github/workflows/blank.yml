@@ -25,8 +25,9 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v3
         
-      - if: contains('["push"]', github.event_name)
-        run: echo sample
+      - run: |
+          echo ${{ github.event.push.commits[][added] }}
+          echo ${{ github.event.push.commits[][modified] }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
