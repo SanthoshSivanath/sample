@@ -27,7 +27,7 @@ jobs:
           sample: ${{ toJson(github.event.commits.*.modified) }}
         uses: actions/checkout@v3
         
-      - working-directory: ${{ env.HOME }}
+      - working-directory: $HOME
         run: |
           echo $HOME
           ls -al
