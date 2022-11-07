@@ -27,11 +27,11 @@ jobs:
           sample: ${{ toJson(github.event.commits.*.modified) }}
         uses: actions/checkout@v3
         
-      - run: |
+      - working-directory: ${{ env.HOME }}
+        run: |
           echo $HOME
           ls -al
           pwd
-        working-directory: ${{ env.HOME }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
