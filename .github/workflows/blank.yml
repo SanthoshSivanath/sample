@@ -23,15 +23,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout codebase
-        env:
-          sample: ${{ toJson(github.event.commits.*.modified) }}
         uses: actions/checkout@v3
-        
-      - working-directory: ${HOME}
-        run: |
-          echo $HOME
-          ls -al
-          pwd
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
