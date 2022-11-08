@@ -29,4 +29,4 @@ jobs:
       - name: Run a one-line script
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
-        run: echo ${{ fromJson(env.AWS)[matrix.index].cluster_name }}
+        run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
