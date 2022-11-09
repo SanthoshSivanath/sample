@@ -13,9 +13,12 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v3
+        
+      - id: sample
+        run: exit 1
 
       - name: Run a one-line script
-        if: github.ref_name == 'master'
+        if: always() && contains('["success", "failure"]', steps.tfsec.outcome)
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
         run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
