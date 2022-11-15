@@ -14,13 +14,9 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v3
         
-      - run: exit 1
-        id: sam
+      - run: echo $(ls -al) >> $GITHUB_OUTPUT
 
       - name: Run a one-line script
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
         run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
-        
-      - if: steps.sam.outcome == 'failure' && always()
-        run: echo sam
