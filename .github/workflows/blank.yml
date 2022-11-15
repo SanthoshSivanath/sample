@@ -17,6 +17,7 @@ jobs:
       - run: |
           terraform init
           terraform plan >> tfplan 2>&1
+          cat tfplan
 
       - name: Run a one-line script
         env:
