@@ -14,7 +14,9 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v3
         
-      - run: echo $(ls -al) >> $GITHUB_OUTPUT
+      - run: |
+          terraform init
+          echo $(terraform plan) >> $GITHUB_OUTPUT
 
       - name: Run a one-line script
         env:
