@@ -22,5 +22,5 @@ jobs:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
         run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
         
-      - if: steps.sam.outcome == 'failure' && always()
+      - if: steps.sam.outcome == 'failure'
         run: echo sam
