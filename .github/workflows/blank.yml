@@ -3,6 +3,9 @@ name: CI
 on:
   push:
     branches: [ "master", "r[0-9][0-9].[0-9][0-9]",  "r[0-9][0-9].[0-9]"]
+    
+  pull_request:
+    branches: [ "master", "r[0-9][0-9].[0-9][0-9]",  "r[0-9][0-9].[0-9]"]
 
   workflow_dispatch:
 
