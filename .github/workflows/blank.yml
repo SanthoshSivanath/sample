@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout codebase
+        id: code
+        uses: actions/checkout@v3
+        
       - uses: actions/github-script@v6
         id: my-script
         with:
@@ -30,10 +34,6 @@ jobs:
             console.log(job)
             
             console.log(`${jobs.jobs[0].html_url}#step:2:1`)
-    
-      - name: Checkout codebase
-        id: code
-        uses: actions/checkout@v3
         
       - run: |
           terraform init
