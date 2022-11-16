@@ -21,6 +21,13 @@ jobs:
               run_id: context.runId
             })
             
+            const { data: job } = await github.rest.actions.getJobForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              job_id: context.runId
+            })
+            
+            console.log(jobs)
             console.log(`${jobs.jobs[0].html_url}#step:2:1`)
     
       - name: Checkout codebase
