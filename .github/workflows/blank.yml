@@ -40,7 +40,7 @@ jobs:
             const { data: job } = await github.rest.actions.getJobForWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              job_id: jobs.jobs[0].id
+              job_id: jobs.jobs[0].idjob.steps.filter(step => step.name == 'Run a one-line script')[0].number
             })
             
             console.log(job)
@@ -61,8 +61,20 @@ jobs:
             })
             
             // 2. Prepare format of the comment
-            const url = ${{ steps.my-script.outputs.result }}.replaceAll('"', '')
-            const output = `[Show plan](${url})
+            const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            })
+
+            const { data: job } = await github.rest.actions.getJobForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              job_id: jobs.jobs[0].id
+            })
+
+            const output = `
+            [Show Plan](${job.html_url}#step:${job.steps.filter(step => step.name == 'Run a one-line script')[0].number}:1)
             
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
             
