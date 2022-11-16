@@ -12,14 +12,19 @@ jobs:
 
     steps:
       - name: Checkout codebase
+        id: code
         uses: actions/checkout@v3
         
-      - id: code
-        run: |
+      - run: |
           terraform init
           terraform plan >> tfplan 2>&1
           cat tfplan
-          
+
+      - name: Run a one-line script
+        env:
+          AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
+        run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
+        
       - uses: actions/github-script@v6
         id: my-script
         with:
@@ -37,10 +42,5 @@ jobs:
             })
             
             console.log(job)
-            number = job.steps.filter(step => step.name == '${{ jobs.code.name }}')[0].number
+            number = job.steps.filter(step => step.name == 'Run terraform init')[0])[0].number
             console.log(`${jobs.jobs[0].html_url}#step:${number}:1`)
-
-      - name: Run a one-line script
-        env:
-          AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
-        run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
