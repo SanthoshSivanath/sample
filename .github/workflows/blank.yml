@@ -62,7 +62,7 @@ jobs:
             
             // 2. Prepare format of the comment
             const url = ${{ steps.my-script.outputs.result }}.replaceAll('"', '')
-            const output = `${url}
+            const output = `[Show plan](${url})
             
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
             
