@@ -12,9 +12,14 @@ jobs:
 
     steps:
       - name: Checkout codebase
-        id: code
         uses: actions/checkout@v3
         
+      - id: code
+        run: |
+          terraform init
+          terraform plan >> tfplan 2>&1
+          cat tfplan
+          
       - uses: actions/github-script@v6
         id: my-script
         with:
@@ -32,13 +37,8 @@ jobs:
             })
             
             console.log(job)
-            number = job.steps.filter(step => step.name == 'Run terraform init')[0].number
+            number = job.steps.filter(step => step.name == ${{ jobs.code.name }})[0].number
             console.log(`${jobs.jobs[0].html_url}#step:${number}:1`)
-        
-      - run: |
-          terraform init
-          terraform plan >> tfplan 2>&1
-          cat tfplan
 
       - name: Run a one-line script
         env:
