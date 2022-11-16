@@ -16,7 +16,7 @@ jobs:
         with:
           script: |
             const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
-              owner: context.repo.owner
+              owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: context.runId
             })
