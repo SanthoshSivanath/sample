@@ -32,8 +32,8 @@ jobs:
             })
             
             console.log(job)
-            
-            console.log(`${jobs.jobs[0].html_url}#step:${job.steps[?(@.name=='Run terraform init')]..number}:1`)
+            number = job.steps.filter(step => step.name == 'Run terraform init')
+            console.log(`${jobs.jobs[0].html_url}#step:${number}:1`)
         
       - run: |
           terraform init
