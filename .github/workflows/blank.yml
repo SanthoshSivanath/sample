@@ -21,7 +21,7 @@ jobs:
               run_id: context.runId
             })
             
-            console.log(jobs)
+            console.log(`${jobs.jobs[0].html_url}#step:2:1`)
     
       - name: Checkout codebase
         uses: actions/checkout@v3
