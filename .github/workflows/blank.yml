@@ -23,7 +23,7 @@ jobs:
             
             l = jobs.jobs[0].html_url.split('/')
             console.log(l)
-            job_id = l[jobs.jobs[0].html_url.length-1]
+            job_id = l[9]
             console.log(job_id)
             
             const { data: job } = await github.rest.actions.getJobForWorkflowRun({
