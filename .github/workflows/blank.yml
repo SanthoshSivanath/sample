@@ -21,15 +21,10 @@ jobs:
               run_id: context.runId
             })
             
-            l = jobs.jobs[0].html_url.split('/')
-            console.log(l)
-            job_id = l[9]
-            console.log(job_id)
-            
             const { data: job } = await github.rest.actions.getJobForWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              job_id: job_id
+              job_id: jobs.jobs[0].id
             })
             
             console.log(job)
