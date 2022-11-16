@@ -28,6 +28,7 @@ jobs:
             })
             
             console.log(jobs)
+            console.log(job)
             console.log(`${jobs.jobs[0].html_url}#step:2:1`)
     
       - name: Checkout codebase
