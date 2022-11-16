@@ -23,7 +23,11 @@ jobs:
       - name: Run a one-line script
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
-        run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
+        run: |
+          if [ ${{ github.event_name = push ]
+          then
+            echo ${{ fromJson(env.AWS).sample.cluster_name }}
+          fi
         
       - uses: actions/github-script@v6
         id: my-script
