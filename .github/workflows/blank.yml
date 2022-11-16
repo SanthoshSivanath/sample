@@ -44,7 +44,6 @@ jobs:
             })
             
             console.log(job)
-            console.log(job.steps.filter(step => step.name = 'Run terraform init')[0])
             return `${job.html_url}#step:${job.steps.filter(step => step.name == 'Run a one-line script')[0].number}:1`
             
       - uses: actions/github-script@v6
