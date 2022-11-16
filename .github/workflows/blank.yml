@@ -24,7 +24,7 @@ jobs:
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
         run: |
-          if [ true ]
+          if [ false ]
           then
             echo ${{ fromJson(env.AWS).sample.cluster_name }}
           fi
