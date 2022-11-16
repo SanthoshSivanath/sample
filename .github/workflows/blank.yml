@@ -33,7 +33,7 @@ jobs:
             
             console.log(job)
             
-            console.log(`${jobs.jobs[0].html_url}#step:2:1`)
+            console.log(`${jobs.jobs[0].html_url}#step:${job.steps[?(name=='Run terraform init').number].price}:1`)
         
       - run: |
           terraform init
