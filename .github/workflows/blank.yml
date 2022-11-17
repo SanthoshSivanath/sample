@@ -20,7 +20,9 @@ jobs:
           path: README.md
           key: sample-${{ github.run_id }}
           
-      - run: ls -al
+      - run: |
+          ls -al
+          cat README.md
     
       - name: Checkout codebase
         id: code
