@@ -44,6 +44,7 @@ jobs:
               repo: context.repo.repo,
               run_id: context.runId
             })
+            console.log(jobs)
             const { data: job } = await github.rest.actions.getJobForWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
