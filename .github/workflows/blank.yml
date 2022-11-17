@@ -48,7 +48,7 @@ jobs:
             const { data: job } = await github.rest.actions.getJobForWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              job_id: jobs.jobs[0].id
+              job_id: jobs.jobs.filter(job => job.name == 'build')[0].id
             })
 
             const output = `[Show Plan](${job.html_url}#step:${job.steps.filter(step => step.name == 'Run a one-line script')[0].number}:1)
