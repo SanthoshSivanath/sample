@@ -23,6 +23,7 @@ jobs:
       - run: |
           ls -al
           cat README.md
+        continue-on-error: true
     
       - name: Checkout codebase
         id: code
