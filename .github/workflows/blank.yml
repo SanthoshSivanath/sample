@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ "master", "r[0-9][0-9].[0-9][0-9]",  "r[0-9][0-9].[0-9]"]
+    branches: [ "master" ]
     
   pull_request:
     branches: [ "master" ]
@@ -15,15 +15,15 @@ jobs:
 
     steps:
       - name: Checkout codebase
-        if: contains('["d","f"]','d')
         uses: actions/checkout@v3
+        
+      - name: Github event
+        run: echo '${{ toJSON(github.event) }}'
 
       - name: Run a one-line script
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
-        run: |
-          echo '${{ toJSON(jobs) }}'
-          echo ${{ fromJson(env.AWS).sample.cluster_name }}
+        run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
             
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
@@ -36,7 +36,7 @@ jobs:
               issue_number: context.issue.number,
             })
             const botComment = comments.find(comment => {
-              return comment.user.type === 'Bot' && comment.body.includes('Terraform Format and Style')
+              return comment.user.type === 'Bot' && comment.body.includes('[Show Plan]')
             })
             
             // 2. Prepare format of the comment
@@ -52,7 +52,7 @@ jobs:
               job_id: jobs.jobs.filter(job => job.name == 'build')[0].id
             })
 
-            const output = `[Show Plan](${job.html_url}#step:${job.steps.filter(step => step.name == 'Run a one-line script')[0].number}:1)
+            const output = `[Show Plan](${job.html_url}#step:${job.steps.filter(step => step.name == 'Github event')[0].number}:1)
             
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
             
