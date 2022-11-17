@@ -15,6 +15,7 @@ jobs:
 
     steps:
       - name: Checkout codebase
+        if: contains(["d","f"],'d')
         uses: actions/checkout@v3
 
       - name: Run a one-line script
