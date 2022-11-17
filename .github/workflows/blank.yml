@@ -20,10 +20,10 @@ jobs:
           path: README.md
           key: sample-${{ github.run_id }}
           
-      - run: |
+      - continue-on-error: true
+        run: |
           ls -al
           cat README.md
-        continue-on-error: true
     
       - name: Checkout codebase
         id: code
