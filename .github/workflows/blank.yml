@@ -14,6 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: README.md
+          key: sample-${{ github.run_id }}
+    
       - name: Checkout codebase
         id: code
         uses: actions/checkout@v3
@@ -22,10 +28,7 @@ jobs:
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
         run: |
-          if [ ${{ github.event_name }} = push ]
-          then
-            echo ${{ fromJson(env.AWS).sample.cluster_name }}
-          fi
+          echo ${{ fromJson(env.AWS).sample.cluster_name }}
             
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
