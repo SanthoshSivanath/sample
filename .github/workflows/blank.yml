@@ -15,42 +15,13 @@ jobs:
 
     steps:
       - name: Checkout codebase
-        id: code
         uses: actions/checkout@v3
-        
-      - run: |
-          terraform init
-          terraform plan >> tfplan 2>&1
-          cat tfplan
 
       - name: Run a one-line script
         env:
           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
         run: |
-          if [ ${{ github.event_name }} = push ]
-          then
-            echo ${{ fromJson(env.AWS).sample.cluster_name }}
-          fi
-        
-      - uses: actions/github-script@v6
-        id: my-script
-        with:
-          script: |
-            const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId
-            })
-            
-            const { data: job } = await github.rest.actions.getJobForWorkflowRun({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              job_id: jobs.jobs[0].id
-            })
-            
-            console.log(job)
-            number = job.steps.filter(step => step.name == 'Run terraform init')[0].number
-            return `${jobs.jobs[0].html_url}#step:${number}:1`
+          echo ${{ fromJson(env.AWS).sample.cluster_name }}
             
       - uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
@@ -67,7 +38,18 @@ jobs:
             })
             
             // 2. Prepare format of the comment
-            const output = `[Show Plan](${{ steps.my-script.outputs.result }})
+            const { data: jobs } = await github.rest.actions.listJobsForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            })
+            const { data: job } = await github.rest.actions.getJobForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              job_id: jobs.jobs[0].id
+            })
+
+            const output = `[Show Plan](${job.html_url}#step:${job.steps.filter(step => step.name == 'Run a one-line script')[0].number}:1)
             
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
             
