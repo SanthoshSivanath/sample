@@ -33,5 +33,8 @@ jobs:
               repo: context.repo.repo,
               ref: context.sha
             })
-            console.log(commit.files.filter(file => file.status == 'modified')[*].filename)
+            files = commit.files.filter(file => file.status == 'modified'))
+            filenames = []
+            files.forEach(file => filenames.push(file.filename))
+            console.log(filenames)
       
