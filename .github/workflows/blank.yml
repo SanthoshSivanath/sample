@@ -33,5 +33,5 @@ jobs:
               repo: context.repo.repo,
               ref: context.sha
             })
-            console.log(commit.files.filter(file => file.status == 'modified'))
+            console.log(commit.files.filter(file => file.status == 'modified').filename)
       
