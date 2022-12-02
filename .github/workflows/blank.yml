@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Github event
-        if: inputs.sample == false
+        if: inputs.sample
         run: echo '${{ toJSON(github.event) }}'
 
       - name: Run a one-line script
