@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-${{ inputs.sample }}
+    runs-on: benzene-ubuntu
 
     steps:
       - name: Checkout codebase
