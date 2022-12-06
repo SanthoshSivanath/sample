@@ -1,8 +1,8 @@
 name: CI
 
 on:
-#   push:
-#     branches: [ "master" ]
+  push:
+    branches: [ "master" ]
     
 #   pull_request:
 #     branches: [ "master" ]
@@ -15,14 +15,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: benzene-ubuntu
 
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v3
         
       - name: Github event
-        if: ${{ inputs.sample }}
         run: echo '${{ toJSON(github.event) }}'
 
       - name: Run a one-line script
