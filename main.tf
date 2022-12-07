@@ -5,7 +5,7 @@ variable "ss" {
       sample = optional(number,null)
     }
     )
-  nullable = true
+  default = null
 }
 
 output "ss" {
