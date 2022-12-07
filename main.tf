@@ -1,9 +1,11 @@
 variable "ss" {
   type = object(
     {
-      sample = optional(number)
+      s = number
+      sample = optional(number,null)
     }
     )
+  nullable = true
 }
 
 output "ss" {
