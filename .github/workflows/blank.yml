@@ -15,13 +15,13 @@ on:
 
 jobs:
   build:
-    runs-on: benzene-ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v3
         
-      - run: sleep 120
+      - run: terraform apply -auto-approve
         
       - name: Github event
         run: echo '${{ toJSON(github.event) }}'
