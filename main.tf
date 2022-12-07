@@ -2,7 +2,7 @@ variable "ss" {
   type = object(
     {
       s = number
-      sample = optional(string)
+      sample = optional(string,"")
     }
     )
   default = null
