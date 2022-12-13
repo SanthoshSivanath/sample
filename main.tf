@@ -1,13 +1,8 @@
 variable "ss" {
-  type = object(
-    {
-      s = number
-      sample = optional(string,"")
-    }
-    )
-  default = null
+  type = string
+  default = "sample"
 }
 
 output "ss" {
-  value = var.ss.sample
+  value = var.ss
 }
