@@ -18,7 +18,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
-        - run: dir
+        - run: |
+            cd C:\npm\prefix
+            dir
           shell: cmd
 #       - name: Checkout codebase
 #         uses: actions/checkout@v3
