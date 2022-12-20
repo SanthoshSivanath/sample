@@ -21,6 +21,8 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v3
         
+      - uses: hashicorp/setup-terraform@v2
+        
       - name: Plan
         uses: SanthoshNath/terraform-plan@master
         
