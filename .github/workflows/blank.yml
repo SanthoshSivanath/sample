@@ -19,6 +19,7 @@ jobs:
 
     steps:
         - run: dir
+          shell: cmd
 #       - name: Checkout codebase
 #         uses: actions/checkout@v3
         
