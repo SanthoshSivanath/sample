@@ -18,7 +18,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-        - run: npm prefix
+        - run: ls ${npm prefix}/bin
 #       - name: Checkout codebase
 #         uses: actions/checkout@v3
         
