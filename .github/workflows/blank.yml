@@ -19,7 +19,7 @@ jobs:
 
     steps:
         - run: |
-            cd C:\npm\prefix
+            chdir C:\npm\prefix
             dir
           shell: cmd
 #       - name: Checkout codebase
