@@ -18,10 +18,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-        - run: |
-            chdir C:\npm\prefix
-            dir
-          shell: cmd
+        - run: gci C:\npm\prefix
 #       - name: Checkout codebase
 #         uses: actions/checkout@v3
         
