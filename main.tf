@@ -1,5 +1,5 @@
 variable "ss" {
-  type    = string
+  type   = string
   default = "sample"
 }
 
