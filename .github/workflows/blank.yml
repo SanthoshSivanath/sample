@@ -14,7 +14,7 @@ on:
 #         type: environment
 
 jobs:
-  build:
+  Plan:
     runs-on: ubuntu-latest
 
     steps:
