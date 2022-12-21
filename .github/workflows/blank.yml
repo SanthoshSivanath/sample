@@ -14,54 +14,32 @@ on:
         type: environment
 
 jobs:
-#   build:
-#     runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout codebase
-#         uses: actions/checkout@v3
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v3
         
-#       - name: Plan
-#         uses: SanthoshNath/terraform-plan@master
+      - name: Plan
+        uses: SanthoshNath/terraform-plan@master
         
-#       - name: Github event
-#         run: echo '${{ toJSON(github.event) }}'
+      - name: Github event
+        run: echo '${{ toJSON(github.event) }}'
 
-#       - name: Run a one-line script
-#         env:
-#           AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
-#         run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
+      - name: Run a one-line script
+        env:
+          AWS: '{"sample":{"cluster_name":"sample","account_id":"12345"},"sample1":{"cluster_name":"sample1","account_id":"54321"}}'
+        run: echo ${{ fromJson(env.AWS).sample.cluster_name }}
             
-#       - uses: actions/github-script@v6
-#         with:
-#           script: |
-#             const { data: commit } = await github.rest.repos.getCommit({
-#               owner: context.repo.owner,
-#               repo: context.repo.repo,
-#               ref: context.sha
-#             })
-#             filenames = []
-#             files = commit.files.filter(file => file.status == 'modified').forEach(file => filenames.push(file.filename))
-#             console.log(filenames)
-
-    run:
-      runs-on: ubuntu-latest
-
-      steps:
-        - run: exit 1
-        
-    run1:
-      needs: run
-      runs-on: ubuntu-latest
-
-      steps:
-        - run: exit 0
-        
-    run2:
-      needs: run1
-      if: failure()
-      runs-on: ubuntu-latest
-
-      steps:
-        - run: pwd
-      
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: commit } = await github.rest.repos.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha
+            })
+            filenames = []
+            files = commit.files.filter(file => file.status == 'modified').forEach(file => filenames.push(file.filename))
+            console.log(filenames)
