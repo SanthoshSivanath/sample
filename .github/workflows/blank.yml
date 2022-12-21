@@ -11,8 +11,7 @@ on:
     inputs:
       sample:
         required: true
-        type: string
-        default: ${{ false }}
+        type: environment
 
 jobs:
   build:
@@ -20,7 +19,6 @@ jobs:
 
     steps:
       - name: Checkout codebase
-        if: inputs.sample
         uses: actions/checkout@v3
         
       - name: Plan
