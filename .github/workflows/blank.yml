@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout codebase
-        if: ${{ inputs.sample }}
+        if: inputs.sample
         uses: actions/checkout@v3
         
       - name: Plan
