@@ -7,11 +7,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
-#   workflow_dispatch:
-#     inputs:
-#       sample:
-#         required: true
-#         type: environment
+  workflow_dispatch:
+    inputs:
+      sample:
+        required: true
+        type: string
+        default: ${{ false }}
 
 jobs:
   build:
@@ -19,6 +20,7 @@ jobs:
 
     steps:
       - name: Checkout codebase
+        if: ${{ inputs.sample }}
         uses: actions/checkout@v3
         
       - name: Plan
