@@ -21,6 +21,9 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v3
         
+      - run: exit 1
+        continue-on-error: true
+        
       - name: Plan
         uses: SanthoshNath/terraform-plan@master
         
