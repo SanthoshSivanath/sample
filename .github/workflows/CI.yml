@@ -33,7 +33,7 @@ jobs:
         
       - name: Github event
         env:
-          sample: ${{ inputs.sample && '' || 'fi' }}
+          sample: ${{ !inputs.sample && 'fi' || '' }}
         run: |
           echo ${{ env.sample }}
           echo '${{ toJSON(github.event) }}'
