@@ -1,17 +1,16 @@
 name: Build
 
 on:
-#   push:
-#     branches: [ "master" ]
+  push:
+    branches: [ "master" ]
     
-#   pull_request:
-#     branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
   workflow_dispatch:
     inputs:
       sample:
         required: false
-        default: false
         type: boolean
 
 jobs:
@@ -33,9 +32,10 @@ jobs:
         
       - name: Github event
         env:
-          sample: ${{ !inputs.sample && 'fi' || '' }}
+          sample: secrets.SAMPLE
+          sample1: ${{ true && '$sample_fi' || '' }}
         run: |
-          echo ${{ env.sample }}
+          echo ${{ env.sample1 }}
           echo '${{ toJSON(github.event) }}'
 
       - name: Run a one-line script
