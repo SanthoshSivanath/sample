@@ -34,7 +34,7 @@ jobs:
         env:
           sample: ${{ inputs.sample && 'fi' || '' }}
         run: |
-          echo $sample
+          echo ${{ env.sample }}
           echo '${{ toJSON(github.event) }}'
 
       - name: Run a one-line script
