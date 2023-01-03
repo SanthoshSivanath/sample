@@ -32,7 +32,7 @@ jobs:
         
       - name: Github event
         env:
-          sample: ${{ false && 'fi' || '' }}
+          sample: ${{ true && 'fi' || '' }}
         run: |
           echo $sample
           echo '${{ toJSON(github.event) }}'
