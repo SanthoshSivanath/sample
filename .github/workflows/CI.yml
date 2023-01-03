@@ -10,7 +10,8 @@ on:
   workflow_dispatch:
     inputs:
       sample:
-        required: true
+        required: false
+        default: false
         type: boolean
 
 jobs:
