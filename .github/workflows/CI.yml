@@ -31,7 +31,11 @@ jobs:
         uses: SanthoshNath/terraform-plan@master
         
       - name: Github event
-        run: echo '${{ toJSON(github.event) }}'
+        env:
+          sample: ${{ 'a' == 'a' && secrets.SAMPLE || '' }}
+        run: |
+          echo $sample_fi
+          echo '${{ toJSON(github.event) }}'
 
       - name: Run a one-line script
         env:
