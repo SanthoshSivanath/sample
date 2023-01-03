@@ -33,7 +33,7 @@ jobs:
       - name: Github event
         env:
           sample: secrets.SAMPLE
-          sample1: ${{ true && '$sample_fi' || '' }}
+          sample1: ${{ true && '${sample}_fi' || '' }}
         run: |
           echo ${{ env.sample1 }}
           echo '${{ toJSON(github.event) }}'
