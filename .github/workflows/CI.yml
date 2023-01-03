@@ -34,7 +34,7 @@ jobs:
         env:
           sample: ${{ true && '${{ secrets.SAMPLE }}_fi' || '' }}
         run: |
-          echo '$sample'
+          echo $sample
           echo '${{ toJSON(github.event) }}'
 
       - name: Run a one-line script
