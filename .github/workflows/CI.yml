@@ -32,9 +32,9 @@ jobs:
         
       - name: Github event
         env:
-          sample: ${{ true && secrets.SAMPLE || '' }}
+          sample: ${{ true && '${{ secrets.SAMPLE }}_fi' || '' }}
         run: |
-          echo '${{ env.sample }}_fi'
+          echo '${{ env.sample }}'
           echo '${{ toJSON(github.event) }}'
 
       - name: Run a one-line script
