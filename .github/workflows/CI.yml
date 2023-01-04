@@ -53,4 +53,4 @@ jobs:
             files = commit.files.filter(file => file.status == 'modified').forEach(file => filenames.push(file.filename))
             console.log(filenames)
             
-      - run: sleep 30
+      - run: sleep 40
