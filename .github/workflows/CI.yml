@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout codebase
@@ -28,7 +28,7 @@ jobs:
           echo "###Hello" >> $GITHUB_STEP_SUMMARY
 
       - name: Plan
-        uses: SanthoshNath/terraform-plan@master
+        uses: SanthoshNath/terraform-plan@v1
         
       - name: Github event
         env:
