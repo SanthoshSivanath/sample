@@ -4,13 +4,16 @@ name: Deploy
 
 # Controls when the workflow will run
 on:
-  workflow_run:
-    workflows:
-      - Build
-    types:
-      - completed
-    branches:
-      - "master"
+  repository_dispatch:
+    types: [on-demand-test]
+
+#   workflow_run:
+#     workflows:
+#       - Build
+#     types:
+#       - completed
+#     branches:
+#       - "master"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
