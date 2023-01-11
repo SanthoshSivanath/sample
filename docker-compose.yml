@@ -1,8 +1,9 @@
 services:
   ubuntu:
-    image: ubuntu:latest
     container_name: ubuntu
     build:
+      context: .
+      dockerfile: Dockerfile
       cache_from:
         - type=gha,mode=max,ignore-error=true
       cache_to:
