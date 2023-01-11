@@ -5,6 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
       cache_from:
-        - type=gha
+        - type=local,dest=./docker-images
       cache_to:
-        - type=gha,mode=max
+        - type=local,src=./docker-images,mode=max
