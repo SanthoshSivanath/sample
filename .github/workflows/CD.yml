@@ -31,8 +31,6 @@ jobs:
         with:
           path: docker-images
           key: docker-${{ hashfiles('docker-compose.yml', 'Dockerfile') }}
-          
-      - run: ls docker-images
       
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
