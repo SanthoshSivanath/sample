@@ -7,4 +7,4 @@ services:
       cache_from:
         - type=gha
       cache_to:
-        - type=gha,mode=max,ignore-error=true
+        - type=gha,mode=max
