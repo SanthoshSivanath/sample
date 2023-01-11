@@ -1,0 +1,10 @@
+services:
+  ubuntu:
+    container_name: ubuntu
+    build:
+      image: ubuntu:latest
+      cache_from:
+        - type=gha,mode=max,ignore-error=true
+      cache_to:
+        - type=gha
+ 
