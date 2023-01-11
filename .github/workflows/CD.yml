@@ -17,7 +17,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.client_payload.token == github.token
 
     steps:
       - name: Checkout codebase
