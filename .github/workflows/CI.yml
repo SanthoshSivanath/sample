@@ -63,7 +63,7 @@ jobs:
               repo: context.repo.repo,
               event_type: `deploy`,
               client_payload: {
-                token: `${{ github.token }}`
+                token: `${{ github.token }}`,
                 sha: context.sha
               }
             })
