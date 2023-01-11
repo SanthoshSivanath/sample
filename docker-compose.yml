@@ -5,6 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
       cache_from:
-        - type=local,src=./docker-images,ignore-error=true
+        - type=local,src=./docker-images
       cache_to:
         - type=local,dest=./docker-images
