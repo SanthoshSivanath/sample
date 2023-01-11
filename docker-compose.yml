@@ -5,6 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
       cache_from:
-        - type=gha,mode=max,ignore-error=true
-      cache_to:
         - type=gha
+      cache_to:
+        - type=gha,mode=max,ignore-error=true
